@@ -19,8 +19,8 @@ public class Persona implements Serializable {
     private Long id;
 
     @ElementCollection
-    @Column(name="ADN")
-    private String[] adn;
+    @Column(name="ADN", columnDefinition = "VARCHAR(10)")
+    private List<String> adn;
 
     @Column(name="Mutante")
     private boolean esMutante;

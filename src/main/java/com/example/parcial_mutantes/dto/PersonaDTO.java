@@ -12,74 +12,96 @@ import java.util.List;
 @ToString
 public class PersonaDTO {
 
-    private String[] adn;
+    private List<String> adn;
     private boolean esMutante;
 
-    public boolean isMutant(String[] adn) {
-        final int n = 6; // Tamaño del arreglo
-        final int secuenciasMin = 2; //minimo de secuencias para ser mutante
+
+    public static boolean isMutant(List<String> adn) throws Exception {
+        final int n = adn.size(); // Tamaño de la lista
+        final int secuenciasMin = 2; // Mínimo de secuencias
+        final int secuenciaMinima = 4; // Mínimo de letras
 
         int secuencias = 0;
 
-        // Verificar secuencias horizontales, verticales y diagonales
+        // Verifica secuencias horizontales
         for (int i = 0; i < n; i++) {
-
-            for (int j = 0; j < n; j++) {
-
-                if (j <= n - 4) { // Verifica secuencia horizontal
-                    if (adn[i].charAt(j) == adn[i].charAt(j + 1) &&
-                            adn[i].charAt(j) == adn[i].charAt(j + 2) &&
-                            adn[i].charAt(j) == adn[i].charAt(j + 3)) {
+            int contador = 1; // Reiniciar contador para cada fila
+            for (int j = 0; j < n - 1; j++) {
+                if (adn.get(i).charAt(j) == adn.get(i).charAt(j + 1)) {
+                    contador++;
+                    if (contador == secuenciaMinima) { // Solo incrementa si se alcanza la secuencia mínima
                         secuencias++;
-                        if (secuencias >= secuenciasMin) return true;
                     }
+                } else {
+                    contador = 1; // Reinicia el contador
                 }
+            }
+        }
 
-                if (i <= n - 4) { // Verifica secuencia vertical
-                    if (adn[i].charAt(j) == adn[i + 1].charAt(j) &&
-                            adn[i].charAt(j) == adn[i + 2].charAt(j) &&
-                            adn[i].charAt(j) == adn[i + 3].charAt(j)) {
+        // Verifica secuencias verticales
+        for (int j = 0; j < n; j++) {
+            int contador = 1; // Reiniciar contador para cada columna
+            for (int i = 0; i < n - 1; i++) {
+                if (adn.get(i).charAt(j) == adn.get(i + 1).charAt(j)) {
+                    contador++;
+                    if (contador == secuenciaMinima) { // Solo incrementa si se alcanza la secuencia mínima
                         secuencias++;
-                        if (secuencias >= secuenciasMin) return true;
                     }
+                } else {
+                    contador = 1; // Reinicia el contador
                 }
+            }
+        }
 
-                if (i <= n - 4 && j <= n - 4) { // Verifica secuencia diagonal descendente
-                    if (adn[i].charAt(j) == adn[i + 1].charAt(j + 1) &&
-                            adn[i].charAt(j) == adn[i + 2].charAt(j + 2) &&
-                            adn[i].charAt(j) == adn[i + 3].charAt(j + 3)) {
+        // Verifica secuencias diagonales descendentes
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - 1; j++) {
+                int contador = 1; // Reiniciar contador para cada diagonal
+                while (i + contador < n && j + contador < n &&
+                        adn.get(i).charAt(j) == adn.get(i + contador).charAt(j + contador)) {
+                    contador++;
+                    if (contador == secuenciaMinima) { // Solo incrementa si se alcanza la secuencia mínima
                         secuencias++;
-                        if (secuencias >= secuenciasMin) return true;
-                    }
-                }
-
-                if (i <= n - 4 && j >= 3) { // Verifica secuencia diagonal ascendente
-                    if (adn[i].charAt(j) == adn[i + 1].charAt(j - 1) &&
-                            adn[i].charAt(j) == adn[i + 2].charAt(j - 2) &&
-                            adn[i].charAt(j) == adn[i + 3].charAt(j - 3)) {
-                        secuencias++;
-                        if (secuencias >= secuenciasMin) return true;
                     }
                 }
             }
         }
 
-        //Falso si no encuentra las secuencias
-        return false;
+        // Verifica secuencias diagonales ascendentes
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < n - 1; j++) {
+                int contador = 1; // Reiniciar contador para cada diagonal
+                while (i - contador >= 0 && j + contador < n &&
+                        adn.get(i).charAt(j) == adn.get(i - contador).charAt(j + contador)) {
+                    contador++;
+                    if (contador == secuenciaMinima) { // Solo incrementa si se alcanza la secuencia mínima
+                        secuencias++;
+                    }
+                }
+            }
+        }
+
+        return secuencias >= secuenciasMin;
     }
 
 
-    public boolean adnValidacion(String[] adn) {
-        // Verificar tamaño del arreglo
-        if (adn.length != 6 || adn[0].length() != 6) {
+
+    public static boolean adnValidacion(List<String> adn) throws Exception {
+        // Verifica alto
+        if (adn.size() != 6){
             return false;
         }
 
-        // Verificar las letras
-        for (int i = 0; i < adn.length; i++) {
-            for (int j = 0; j < adn[i].length(); j++) {
-                char c = adn[i].charAt(j);
-                if (c != 'G' && c != 'C' && c != 'A' && c != 'T') {
+        for (String cadena : adn) {
+            //verifica ancho
+            if (cadena.length() != 6) {
+                return false;
+            }
+
+            // verfica las letras
+            for (char c : cadena.toCharArray()) {
+                char cMayuscula = Character.toUpperCase(c);
+                if (cMayuscula != 'G' && cMayuscula != 'C' && cMayuscula != 'A' && cMayuscula != 'T') {
                     return false;
                 }
             }
@@ -87,5 +109,9 @@ public class PersonaDTO {
 
         return true;
     }
+
+
+
+
 
 }
