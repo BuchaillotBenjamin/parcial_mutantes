@@ -19,13 +19,13 @@ public class PersonaController {
     public ResponseEntity<?> registro(@RequestBody PersonaDTO persona) {
 
         try {
-            if (!PersonaDTO.adnValidacion(persona.getAdn())) {
+            if (!PersonaService.adnValidacion(persona.getAdn())) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ADN no valido");
             }
 
             personaService.ResgistrarHumano(persona);
 
-            if(PersonaDTO.isMutant(persona.getAdn())){
+            if(PersonaService.isMutant(persona.getAdn())){
                 return ResponseEntity.status(HttpStatus.OK).body("Mutante encontrado");
             }else{
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Mutante no encontrado");
