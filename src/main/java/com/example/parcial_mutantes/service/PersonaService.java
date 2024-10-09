@@ -58,7 +58,7 @@ public class PersonaService {
             return false;
         }
         // Verifica alto
-        if (adn.size() < 4 || adn.size() > 10 ) {
+        if (adn.size() < 4) {
             return false;
         }
 
@@ -80,39 +80,58 @@ public class PersonaService {
         return true;
     }
 
+
     public static boolean isMutant(List<String> adn) throws Exception {
         final int n = adn.size(); // Tamaño de la lista
         final int secuenciasMin = 2; // Mínimo de secuencias
-        final int secuenciaMinima = 4; // Mínimo de letras
-
+        final int secuenciaMinima = 4;
         int secuencias = 0;
+
+        // Convertir la lista a mayúsculas para evitar conversiones en cada iteración
+        for (int i = 0; i < n; i++) {
+            adn.set(i, adn.get(i).toUpperCase());
+        }
 
         // Verifica secuencias horizontales
         for (int i = 0; i < n; i++) {
-            int contador = 1; // Reiniciar contador para cada fila
-            for (int j = 0; j < n - 1; j++) {
-                if (Character.toUpperCase(adn.get(i).charAt(j)) == Character.toUpperCase(adn.get(i).charAt(j + 1))) {
-                    contador++;
-                    if (contador == secuenciaMinima) { // Solo incrementa si se alcanza la secuencia mínima
-                        secuencias++;
+            for (int j = 0; j < n - 3; j++) {
+                //compara j+1 y j+2 si coinciden compara el anterior y el posterior
+                if (adn.get(i).charAt(j + 1) == adn.get(i).charAt(j + 2)) {
+                    if (adn.get(i).charAt(j + 1) == adn.get(i).charAt(j + 3) && adn.get(i).charAt(j + 1) == adn.get(i).charAt(j)) {
+                        //revisa que no sea una secuencia ya contada
+                        if (j != 0) {
+                            if (adn.get(i).charAt(j) != adn.get(i).charAt(j - 1)) {
+                                secuencias++;
+                            }
+                        } else {
+                            secuencias++;
+                        }
+                        j += 2;
                     }
                 } else {
-                    contador = 1; // Reinicia el contador
+                    j++;
                 }
             }
         }
 
         // Verifica secuencias verticales
         for (int j = 0; j < n; j++) {
-            int contador = 1; // Reiniciar contador para cada columna
-            for (int i = 0; i < n - 1; i++) {
-                if (Character.toUpperCase(adn.get(i).charAt(j)) == Character.toUpperCase(adn.get(i + 1).charAt(j))) {
-                    contador++;
-                    if (contador == secuenciaMinima) { // Solo incrementa si se alcanza la secuencia mínima
-                        secuencias++;
+            for (int i = 0; i < n - 3; i++) {
+                // Compara i + 1 y i + 2 si coinciden, compara el anterior y el posterior
+                if (adn.get(i + 1).charAt(j) == adn.get(i + 2).charAt(j)) {
+                    if (adn.get(i + 1).charAt(j) == adn.get(i + 3).charAt(j) && adn.get(i + 1).charAt(j) == adn.get(i).charAt(j)) {
+                        // Revisa que no sea una secuencia ya contada
+                        if (i != 0) {
+                            if (adn.get(i).charAt(j) != adn.get(i - 1).charAt(j)) {
+                                secuencias++;
+                            }
+                        } else {
+                            secuencias++;
+                        }
+                        i += 2; // Salta dos posiciones si se cuenta una secuencia
                     }
                 } else {
-                    contador = 1; // Reinicia el contador
+                    i++; // Si no hay coincidencia, avanza a la siguiente posición
                 }
             }
         }
@@ -122,7 +141,7 @@ public class PersonaService {
             for (int j = 0; j < n - 1; j++) {
                 int contador = 1; // Reiniciar contador para cada diagonal
                 while (i + contador < n && j + contador < n &&
-                        Character.toUpperCase(adn.get(i).charAt(j)) == Character.toUpperCase(adn.get(i + contador).charAt(j + contador))) {
+                        adn.get(i).charAt(j) == adn.get(i + contador).charAt(j + contador)) {
                     contador++;
                     if (contador == secuenciaMinima) { // Solo incrementa si se alcanza la secuencia mínima
                         secuencias++;
@@ -136,7 +155,7 @@ public class PersonaService {
             for (int j = 0; j < n - 1; j++) {
                 int contador = 1; // Reiniciar contador para cada diagonal
                 while (i - contador >= 0 && j + contador < n &&
-                        Character.toUpperCase(adn.get(i).charAt(j)) == Character.toUpperCase(adn.get(i - contador).charAt(j + contador))) {
+                        adn.get(i).charAt(j) == adn.get(i - contador).charAt(j + contador)) {
                     contador++;
                     if (contador == secuenciaMinima) { // Solo incrementa si se alcanza la secuencia mínima
                         secuencias++;
