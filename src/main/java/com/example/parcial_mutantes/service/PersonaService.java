@@ -22,8 +22,6 @@ public class PersonaService {
     @Transactional
     public void ResgistrarHumano(PersonaDTO persona) throws Exception {
 
-        persona.setEsMutante(isMutant(persona.getAdn()));
-
         Persona personaPersistir = PersonaMapper.instancia.personaDTOToPersona(persona);
 
         //envia a la bd
