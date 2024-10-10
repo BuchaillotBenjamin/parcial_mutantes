@@ -14,6 +14,9 @@ COPY . .
 RUN chmod +x ./gradlew
 RUN ./gradlew bootJar --no-daemon
 
+# Verificar si el archivo JAR se generó
+RUN ls -la /app/build/libs
+
 # Fase de ejecución
 FROM openjdk:17-alpine
 
@@ -24,7 +27,7 @@ EXPOSE 9000
 WORKDIR /app
 
 # Copiar el archivo JAR generado desde la fase de construcción
-COPY --from=build /app/build/libs/parcial-mutantes-0.0.1-SNAPSHOT.jar ./app.jar
+COPY --from=build /app/build/libs/*.jar ./app.jar
 
 # Definir el comando de entrada para ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "app.jar"]
