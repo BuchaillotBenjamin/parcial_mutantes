@@ -2,6 +2,7 @@ package com.example.parcial_mutantes.mapper;
 
 import com.example.parcial_mutantes.dto.PersonaDTO;
 import com.example.parcial_mutantes.entity.Persona;
+import com.example.parcial_mutantes.service.MutantesService;
 import com.example.parcial_mutantes.service.PersonaService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -25,7 +26,7 @@ public interface PersonaMapper {
 
     default Boolean esMutante(List<String> adn) {
         try {
-            return (PersonaService.isMutant(adn));
+            return (MutantesService.isMutant(adn));
         }catch (Exception e){
             return false;
         }

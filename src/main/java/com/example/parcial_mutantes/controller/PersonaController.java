@@ -1,6 +1,7 @@
 package com.example.parcial_mutantes.controller;
 
 import com.example.parcial_mutantes.dto.PersonaDTO;
+import com.example.parcial_mutantes.service.MutantesService;
 import com.example.parcial_mutantes.service.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,20 +20,20 @@ public class PersonaController {
     public ResponseEntity<?> registro(@RequestBody PersonaDTO persona) {
 
         try {
-            if (!PersonaService.adnValidacion(persona.getAdn())) {
+            if (!MutantesService.adnValidacion(persona.getAdn())) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ADN no valido");
             }
 
             personaService.ResgistrarHumano(persona);
 
-            if(PersonaService.isMutant(persona.getAdn())){
+            if(MutantesService.isMutant(persona.getAdn())){
                 return ResponseEntity.status(HttpStatus.OK).body("Mutante encontrado");
             }else{
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Mutante no encontrado");
             }
 
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error interno");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
 
     }
