@@ -3,6 +3,10 @@ package com.example.parcial_mutantes.service;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class MutantesService {
@@ -36,28 +40,41 @@ public class MutantesService {
     }
 
     public static boolean isMutant(List<String> adn) throws Exception {
-        final int n = adn.size(); // Tamaño de la lista
-        final int secuenciasMin = 2; // Mínimo de secuencias
-        final int secuenciaMinima = 4;
-        int secuencias = 0;
+        final int n = adn.size();
+        final int secuenciasMin = 2;
+        AtomicInteger secuencias = new AtomicInteger(0);
 
-        // Convertir la lista a mayúsculas
         for (int i = 0; i < n; i++) {
             adn.set(i, adn.get(i).toUpperCase());
         }
 
-        // Verifica las secuencias
-        secuencias += verHorizontal(adn, n);
-        if (secuencias >= secuenciasMin) return true;
+        ExecutorService executor = Executors.newFixedThreadPool(4);
 
-        secuencias += verVertical(adn, n);
-        if (secuencias >= secuenciasMin) return true;
+        Future<Integer> horizontal = executor.submit(() -> verHorizontal(adn, n));
+        if ((secuencias.get()+horizontal.get()) >= secuenciasMin){
+            executor.shutdown();
+            return true;
+        }
 
-        secuencias += verDiagonalDescendente(adn, n);
-        if (secuencias >= secuenciasMin) return true;
+        Future<Integer> vertical = executor.submit(() -> verVertical(adn, n));
+        if ((secuencias.get()+vertical.get()) >= secuenciasMin){
+            executor.shutdown();
+            return true;
+        }
 
-        secuencias += verDiagonalAscendente(adn, n);
-        if (secuencias >= secuenciasMin) return true;
+        Future<Integer> diagonalDescendente = executor.submit(() -> verDiagonalDescendente(adn, n));
+        if ((secuencias.get()+diagonalDescendente.get()) >= secuenciasMin){
+            executor.shutdown();
+            return true;
+        }
+
+        Future<Integer> diagonalAscendente = executor.submit(() -> verDiagonalAscendente(adn, n));
+        if ((secuencias.get()+diagonalAscendente.get()) >= secuenciasMin){
+            executor.shutdown();
+            return true;
+        }
+
+        executor.shutdown();
 
         return false;
     }
