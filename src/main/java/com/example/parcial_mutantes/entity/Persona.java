@@ -18,12 +18,13 @@ public class Persona implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
 
-    @Column(name="Mutante")
+    @Column(name="MUTANTE")
     private boolean esMutante;
 
-    @Column(name="ADN-Completo", columnDefinition = "TEXT")
+    @Column(name="ADN-COMPLETO", columnDefinition = "TEXT")
     private String fullAdn;
 
     //@ElementCollection
