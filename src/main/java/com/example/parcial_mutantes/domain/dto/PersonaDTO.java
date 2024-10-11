@@ -1,4 +1,4 @@
-package com.example.parcial_mutantes.dto;
+package com.example.parcial_mutantes.domain.dto;
 
 import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;

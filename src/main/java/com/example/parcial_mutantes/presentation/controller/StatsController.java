@@ -1,7 +1,7 @@
-package com.example.parcial_mutantes.controller;
+package com.example.parcial_mutantes.presentation.controller;
 
-import com.example.parcial_mutantes.dto.StatsDTO;
-import com.example.parcial_mutantes.service.StatsService;
+import com.example.parcial_mutantes.domain.dto.StatsDTO;
+import com.example.parcial_mutantes.business.service.StatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,8 +1,8 @@
-package com.example.parcial_mutantes.entity;
+package com.example.parcial_mutantes.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.context.annotation.Primary;
+
 
 import java.io.Serializable;
 import java.util.List;

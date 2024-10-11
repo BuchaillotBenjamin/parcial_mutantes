@@ -1,7 +1,7 @@
-package com.example.parcial_mutantes.service;
+package com.example.parcial_mutantes.business.service;
 
-import com.example.parcial_mutantes.dto.StatsDTO;
-import com.example.parcial_mutantes.repository.PersonaRepository;
+import com.example.parcial_mutantes.domain.dto.StatsDTO;
+import com.example.parcial_mutantes.repositories.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

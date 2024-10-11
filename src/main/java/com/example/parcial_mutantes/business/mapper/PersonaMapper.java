@@ -1,9 +1,8 @@
-package com.example.parcial_mutantes.mapper;
+package com.example.parcial_mutantes.business.mapper;
 
-import com.example.parcial_mutantes.dto.PersonaDTO;
-import com.example.parcial_mutantes.entity.Persona;
-import com.example.parcial_mutantes.service.MutantesService;
-import com.example.parcial_mutantes.service.PersonaService;
+import com.example.parcial_mutantes.domain.dto.PersonaDTO;
+import com.example.parcial_mutantes.domain.entity.Persona;
+import com.example.parcial_mutantes.business.service.MutantesService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

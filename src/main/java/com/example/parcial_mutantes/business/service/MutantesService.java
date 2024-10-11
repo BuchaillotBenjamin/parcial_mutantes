@@ -1,7 +1,6 @@
-package com.example.parcial_mutantes.service;
+package com.example.parcial_mutantes.business.service;
 
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

@@ -1,16 +1,13 @@
-package com.example.parcial_mutantes.service;
+package com.example.parcial_mutantes.business.service;
 
 
-import com.example.parcial_mutantes.dto.PersonaDTO;
-import com.example.parcial_mutantes.dto.StatsDTO;
-import com.example.parcial_mutantes.entity.Persona;
-import com.example.parcial_mutantes.mapper.PersonaMapper;
-import com.example.parcial_mutantes.repository.PersonaRepository;
+import com.example.parcial_mutantes.domain.dto.PersonaDTO;
+import com.example.parcial_mutantes.domain.entity.Persona;
+import com.example.parcial_mutantes.business.mapper.PersonaMapper;
+import com.example.parcial_mutantes.repositories.PersonaRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

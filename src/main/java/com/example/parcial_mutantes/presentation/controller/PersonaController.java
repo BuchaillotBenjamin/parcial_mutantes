@@ -1,8 +1,8 @@
-package com.example.parcial_mutantes.controller;
+package com.example.parcial_mutantes.presentation.controller;
 
-import com.example.parcial_mutantes.dto.PersonaDTO;
-import com.example.parcial_mutantes.service.MutantesService;
-import com.example.parcial_mutantes.service.PersonaService;
+import com.example.parcial_mutantes.domain.dto.PersonaDTO;
+import com.example.parcial_mutantes.business.service.MutantesService;
+import com.example.parcial_mutantes.business.service.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

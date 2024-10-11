@@ -1,7 +1,7 @@
-package com.example.parcial_mutantes.repository;
+package com.example.parcial_mutantes.repositories;
 
-import com.example.parcial_mutantes.dto.PersonaDTO;
-import com.example.parcial_mutantes.entity.Persona;
+
+import com.example.parcial_mutantes.domain.entity.Persona;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
