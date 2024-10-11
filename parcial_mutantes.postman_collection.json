@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "1ee02123-8f81-474a-8ca5-12bea2ee9e42",
+		"name": "Mutantes API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12379877"
+	},
+	"item": [
+		{
+			"name": "registrarHumano",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"adn\":[\"ATCG\",\"CAGT\",\"TTAG\",\"GGAA\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://parcial-mutantes.onrender.com/personas/mutant",
+					"protocol": "https",
+					"host": [
+						"parcial-mutantes",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"personas",
+						"mutant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getStats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://parcial-mutantes.onrender.com/stats",
+					"protocol": "https",
+					"host": [
+						"parcial-mutantes",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://parcial-mutantes.onrender.com/personas",
+					"protocol": "https",
+					"host": [
+						"parcial-mutantes",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getOne",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://parcial-mutantes.onrender.com/personas/1",
+					"protocol": "https",
+					"host": [
+						"parcial-mutantes",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"personas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
