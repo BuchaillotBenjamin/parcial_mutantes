@@ -14,6 +14,7 @@ public interface PersonaMapper {
 
     PersonaMapper instancia = Mappers.getMapper(PersonaMapper.class);
 
+    @Mapping(target = "id", ignore = true) // Ignorar
     @Mapping(target = "esMutante", expression = "java(esMutante(personaDTO.getAdn()))")
     @Mapping(target = "fullAdn", expression = "java(mapFullAdn(personaDTO.getAdn()))")
     Persona personaDTOToPersona(PersonaDTO personaDTO);

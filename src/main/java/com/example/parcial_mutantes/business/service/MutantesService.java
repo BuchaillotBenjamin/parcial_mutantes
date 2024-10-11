@@ -2,6 +2,7 @@ package com.example.parcial_mutantes.business.service;
 
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -10,26 +11,30 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class MutantesService {
 
-    public static boolean adnValidacion(List<String> adn) throws Exception {
+    public static boolean adnValidacion(List<String> adn) {
+        Set<Character> letrasValidas = Set.of('G', 'C', 'A', 'T');
 
         if (adn == null || adn.isEmpty()) {
             return false;
         }
+
+        int longitudEsperada = adn.size();
+
         // Verifica alto
-        if (adn.size() < 4) {
+        if (longitudEsperada < 4) {
             return false;
         }
 
         for (String cadena : adn) {
             //verifica ancho
-            if (cadena.length() != adn.size()) {
+            if (cadena.length() != longitudEsperada) {
                 return false;
             }
 
             // verfica las letras
             for (char c : cadena.toCharArray()) {
                 char cMayuscula = Character.toUpperCase(c);
-                if (cMayuscula != 'G' && cMayuscula != 'C' && cMayuscula != 'A' && cMayuscula != 'T') {
+                if (!letrasValidas.contains(cMayuscula)) {
                     return false;
                 }
             }
