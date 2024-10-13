@@ -26,16 +26,16 @@ La API está desplegada en Render y puedes acceder a la siguiente ruta:
 
 ## Funcionalidades de la API
 - **POST** `/personas/mutant`: Verifica si un ADN pertenece a un mutante.
-  - URL: [POST Mutant](https://parcial-mutantes.onrender.com/personas/mutant)
+  - URL: https://parcial-mutantes.onrender.com/personas/mutant
   
 - **GET** `/stats`: Retorna las estadísticas de mutantes y humanos.
-  - URL: [GET Stats](https://parcial-mutantes.onrender.com/stats)
+  - URL: https://parcial-mutantes.onrender.com/stats
 
 - **GET** `/personas`: Devuelve todas las personas registradas.
-  - URL: [GET Personas](https://parcial-mutantes.onrender.com/personas)
+  - URL: https://parcial-mutantes.onrender.com/personas
 
 - **GET** `/personas/{id}`: Devuelve una persona por ID.
-  - URL: [GET Persona por ID](https://parcial-mutantes.onrender.com/personas/1)
+  - URL: https://parcial-mutantes.onrender.com/personas/1
 
 ## Despliegue en Máquina Local
 
