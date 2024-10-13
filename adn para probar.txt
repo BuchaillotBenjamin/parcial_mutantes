@@ -1,0 +1,103 @@
+Pruebas personas:
+
+
+ADN no validos:
+
+{
+  "adn": [
+    "ACAAAAAC" 
+  ]
+}
+
+{
+  "adn": null
+  
+}
+
+{
+  "adn": [
+    "AA2AAA",  
+    "AT3GTT",
+    "TCGTGA",
+    "TG4TCA",
+    "CA5GTC",
+    "CTAGCA"
+  ]
+}
+
+Mutante coincidencias verticales:
+{
+  "adn": [
+    "AGTTGC",  
+    "ACAACC",
+    "AGTGTC",
+    "AACACC",
+    "AGTGTC",
+    "AACACC"
+  ]
+}
+
+Mutante coincidencias horizontales:
+{
+  "adn": [
+    "GGGGGG",  
+    "TTTTTT",
+    "ACACCA",
+    "TGTGTG",
+    "ACACAC",
+    "TGTGTG"
+  ]
+}
+
+Mutante coincidencias diagonales descendentes:
+{
+  "adn": [
+    "GCTAGC", 
+    "AGCGTT",
+    "ACGCGA",
+    "TGAGCA",
+    "CATGGC",
+    "CTAGCG"
+  ]
+}
+
+Mutante coincidencias diagonales ascendentes: 
+{
+  "adn": [
+    "GCTAGC",  
+    "ATAGCT",
+    "ACGCGA",
+    "TGCTCA",
+    "GCTGTC",
+    "CTAGCA"
+  ]
+}
+
+No mutante:
+{
+  "adn": [
+    "AAAAAA",  
+    "ATCGTT",
+    "TCGTGA",
+    "TGATCA",
+    "CATGTC",
+    "CTAGCA"
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
