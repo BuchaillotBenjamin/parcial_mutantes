@@ -45,19 +45,27 @@ public class MutantesService {
 
     public static boolean isMutant(List<String> adn) throws Exception {
         final int n = adn.size();
+
+        // Numero minimo para que sea mutante
         final int secuenciasMin = 2;
+
+        // Usar AtomicInteger para llevar un conteo seguro de las secuencias encontradas entre hilos
         AtomicInteger secuencias = new AtomicInteger(0);
 
+        // Cadenas a mayusculas
         for (int i = 0; i < n; i++) {
             adn.set(i, adn.get(i).toUpperCase());
         }
 
+        // Crear un ExecutorService con un pool de 4 hilos para ejecutar tareas concurrentemente
         ExecutorService executor = Executors.newFixedThreadPool(4);
 
+        // Enviar una tarea para verificar secuencias horizontales y obtener un Future
         Future<Integer> horizontal = executor.submit(() -> verHorizontal(adn, n));
-        if ((secuencias.get()+horizontal.get()) >= secuenciasMin){
-            executor.shutdown();
-            return true;
+        // Comprobar si las secuencias encontradas más las ya contabilizadas son suficientes
+        if ((secuencias.get() + horizontal.get()) >= secuenciasMin) {
+            executor.shutdown(); // Apagar el executor si se cumple la condición
+            return true; // Retornar true indicando que se encontraron suficientes secuencias
         }
 
         Future<Integer> vertical = executor.submit(() -> verVertical(adn, n));
@@ -78,8 +86,10 @@ public class MutantesService {
             return true;
         }
 
+        // Apagar el executor después de realizar todas las tareas
         executor.shutdown();
 
+        // Retornar false si no es mutante
         return false;
     }
 
