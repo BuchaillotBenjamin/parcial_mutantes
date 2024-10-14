@@ -56,3 +56,16 @@ Antes de ejecutar este proyecto, asegúrate de tener las siguientes herramientas
 
    ```bash
    git clone https://github.com/BuchaillotBenjamin/parcial_mutantes.git
+
+### 2. Abre el proyecto en el entorno de desarrollo 
+
+### 3. Asegúrate de que H2 esté corriendo
+
+### 4. Ejecuta el proyecto dentro del entorno de desarrollo
+
+### 5. Probar la API con Postman
+
+1. Abre Postman.
+2. Importa el archivo JSON que se encuentra dentro del proyecto.
+3. Utiliza los métodos importados con las URL apuntando a `http://localhost:8080`.
+
