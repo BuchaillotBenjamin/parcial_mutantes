@@ -29,6 +29,10 @@ public class StatsService {
                 .ratio(porcentajeMutantes)
                 .build();
 
+        if (statsDTO == null) {
+            throw new Exception("No se encontraron estadísticas");
+        }
+
         return (statsDTO);
 
     }
