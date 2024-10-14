@@ -56,6 +56,7 @@ Antes de ejecutar este proyecto, asegúrate de tener las siguientes herramientas
 
    ```bash
    git clone https://github.com/BuchaillotBenjamin/parcial_mutantes.git
+   ```
 
 ### 2. Abre el proyecto en el entorno de desarrollo 
 
